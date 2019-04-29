@@ -2,7 +2,11 @@
 
 ![alt text](https://github.com/pnagula/C-C-Server-Classification/blob/master/C%26C_Server_Classification_Approach.jpeg)
 
-# SVM Co-Efficient Variable Selection
+# Variable Selection using SVM Co-Efficients
 
 ![alt text](https://github.com/pnagula/C-C-Server-Classification/blob/master/SVM%20Co-Efficient%20Chart.jpg)
+
+# Variable Selection using ANOVA
+
+
 
