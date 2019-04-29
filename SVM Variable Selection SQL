@@ -1,0 +1,9 @@
+--
+-- SQL to find coef of SVM and there by variable selection, all negative coefficient variables are identifiers of class 0 and all positive 
+-- coefficient variable are identifiers of class 1.
+--
+select 
+       regexp_replace(unnest(string_to_array(independent_varname,',')::text[])::text, '\W+', '', 'g'),
+       unnest(coef)  as coef
+from cc_svm_summary,cc_svm
+;

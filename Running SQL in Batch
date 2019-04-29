@@ -1,0 +1,222 @@
+dbname="imda_dev"
+
+username="gpadmin"
+
+psql $dbname $username << EOF 
+
+Select setseed(.55);
+
+-- select  *  from CC_SVM_summary ;
+
+	
+
+DROP TABLE IF EXISTS CC_SVM, CC_SVM_summary,CC_svm_random;
+
+SELECT madlib.svm_classification(
+
+    'out_train',
+
+    'CC_SVM',
+
+    'label',
+
+    'ARRAY[1,  avgpkts_sent,
+
+		stdpkts_sent,
+
+		avgbytes_sent,
+
+		stdbytes_sent,
+
+		avgdur_sent,
+
+		stddur_sent,
+
+		avgbps_sent,
+
+		stdbps_sent,
+
+		count_distinct_dst_ports_sent,
+
+		count_distinct_source_ports_sent,
+
+		count_of_flows_sent,
+
+		iqrbytes_sent,
+
+		iqrpkts_sent,
+
+		iqrdur_sent,
+
+		iqrbps_sent,
+
+		minpkts_sent,
+
+		maxpkts_sent,
+
+		minbytes_sent,
+
+		maxbytes_sent,
+
+		mindur_sent,
+
+		maxdur_sent,
+
+		minbps_sent,
+
+		maxbps_sent,
+
+		rangepkts_sent,
+
+		rangebytes_sent,
+
+		rangedur_sent,
+
+		rangebps_sent,
+
+		medbytes_sent,
+
+		medpkts_sent,
+
+		meddur_sent,
+
+		medbps_sent,
+
+		avgpkts_recev,
+
+		stdpkts_recev,
+
+		avgbytes_recev,
+
+		stdbytes_recev,
+
+		avgdur_recev,
+
+		stddur_recev,
+
+		avgbps_recev,
+
+		stdbps_recev,
+
+		count_distinct_dst_ports_recev,
+
+		count_distinct_source_ports_recev,
+
+		count_of_flows_recev,
+
+		iqrbytes_recev,
+
+		iqrpkts_recev,
+
+		iqrdur_recev,
+
+		iqrbps_recev,
+
+		minpkts_recev,
+
+		maxpkts_recev,
+
+		minbytes_recev,
+
+		maxbytes_recev,
+
+		mindur_recev,
+
+		maxdur_recev,
+
+		minbps_recev,
+
+		maxbps_recev,
+
+		rangepkts_recev,
+
+		rangebytes_recev,
+
+		rangedur_recev,
+
+		rangebps_recev,
+
+		medbytes_recev,
+
+		medpkts_recev,
+
+		meddur_recev,
+
+		medbps_recev,
+
+		frequent_bytes_sent,
+
+		frequent_bytes_recev,
+
+		frequent_packets_sent,
+
+		frequent_packets_recev,
+
+		frequent_duration_sent,
+
+		frequent_duration_recev,
+
+		frequent_bps_sent,
+
+		frequent_bps_recev,
+
+		frequency_of_frequent_bytes_sent,
+
+		frequency_of_frequent_bytes_recev,
+
+		frequency_of_frequent_packets_sent,
+
+		frequency_of_frequent_packets_recev,
+
+		frequency_of_frequent_duration_sent,
+
+		frequency_of_frequent_duration_recev,
+
+		frequency_of_frequent_bps_sent,
+
+		frequency_of_frequent_bps_recev,
+
+		frequent_communucation_frequency_sent,
+
+		frequent_communucation_frequency_recev,
+
+		frequency_of_frequent_communication_frequency_sent,
+
+		frequency_of_frequent_communication_frequency_recev,
+
+		madbytes_sent,
+
+		madbytes_recev,
+
+		madpkts_sent,
+
+		madpkts_recev,
+
+		maddur_sent,
+
+		maddur_recev,
+
+		madbps_sent,
+
+		madbps_recev
+
+          ]',
+
+    '',  
+
+    'random_state=15,fit_intercept=True',    
+
+    NULL,
+
+    'class_weight=balanced,max_iter=500'
+
+    );
+
+EOF
+
+
+--
+--Command to run script
+--
+nohup sh /home/gpadmin/batchsql.sh > svmlog.log &
+
